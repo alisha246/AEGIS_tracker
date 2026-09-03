@@ -6,13 +6,13 @@ The tracker discovers AEGIS-related projects and samples, retrieves runs and ass
 
 ## Overview
 
-The tracker treats **ENA as the source of truth for AEGIS membership**.
+The tracker treats **ENA as the source for AEGIS datasets**.
 
 AEGIS records are discovered through three routes:
 
 1. **ENA sample metadata** where `project_name = "AEGIS"`.
 2. **BioSamples** where the characteristic `project name` is `AEGIS`, `Aegis`, or `aegis`.
-3. **ENA umbrella membership** under umbrella project `PRJEB80366`.
+3. **ENA umbrella components** under umbrella project `PRJEB80366`.
 
 These sources are merged and deduplicated by sample accession. The tracker records why each sample was included.
 
@@ -160,7 +160,7 @@ attr:project name:aegis
 
 The tracker verifies the returned value locally using a case-insensitive comparison.
 
-### 3. ENA umbrella membership
+### 3. ENA umbrella components
 
 The tracker retrieves the ENA umbrella project XML for `PRJEB80366` and reads the child project relationships from the umbrella metadata.
 
@@ -221,7 +221,7 @@ can be matched on the same base accession.
 
 Projects discovered from ENA are checked against **NCBI BioProject**.
 
-ENA remains the source of truth for AEGIS membership. The NCBI check only asks whether each ENA-derived project is also visible/public in NCBI.
+ENA remains the source for AEGIS datasets. The NCBI check only asks whether each ENA-derived project is also visible/public in NCBI.
 
 Typical project-status fields include:
 
@@ -464,7 +464,7 @@ The sample has multiple assemblies and metadata-only component retrieval cannot 
 
 ## Maintenance notes
 
-- ENA should remain the authority for defining AEGIS membership.
+- ENA should remain the authority for defining AEGIS ownership.
 - NCBI should remain a comparison/propagation check rather than the discovery source.
 - Do not interpret API failures as evidence that records are private.
 - Preserve the production history and umbrella cache between weekly runs.
